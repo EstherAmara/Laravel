@@ -1,0 +1,9 @@
+migration
+    once you create a new column in the customers model, you have to migrate using the migration command
+        php artisan migrate
+    you'll have to roll back the existing changes and then migrate the table again. this clears all changes made to the      database i.e this is just for practice
+        php artisan migrate:rollback
+
+yield
+    this is used to partition views so that different sections of a view can be stored in different files
+    go through layout for more details
