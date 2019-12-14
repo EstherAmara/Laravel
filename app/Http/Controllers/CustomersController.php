@@ -9,12 +9,19 @@ class CustomersController extends Controller
 {
     //this displays all customers in the Customer table.
     public function list() {
-        $customers = Customer::all();
-//        dd($customers);
+        $activeCustomers = Customer::active($num=1)->get();
+        $inactiveCustomers = Customer::active($num = 2)->get();
 
-        return view('internals.customers', [
-            'customers' => $customers,
-        ]);
+//        $customers = Customer::all(); Used to get all records
+//        dd($customers); this works just like var_dump
+
+//        return view('internals.customers', [
+//            'activeCustomers' => $activeCustomers,
+//            'inactiveCustomers' => $inactiveCustomers
+//        ]);
+
+//        this is the shorter version of the above function
+        return view('internals.customers', compact('activeCustomers', 'inactiveCustomers'));
     }
 
     public function store() {
@@ -26,12 +33,16 @@ class CustomersController extends Controller
             'title' => 'required',
             'active' => 'required',
         ]);
-        $customer = new Customer();
-        $customer->name = request('name');
-        $customer->email = request('email');
-        $customer->title = request('title');
-        $customer->active = request('active');
-        $customer->save();
+
+        Customer::create($data);
+//        if($data) {
+//            $customer = new Customer();
+//            $customer->name = request('name');
+//            $customer->email = request('email');
+//            $customer->title = request('title');
+//            $customer->active = request('active');
+//            $customer->save();
+//        }
 
         //go back to the page you're coming from i.e customers.blade.php
         return back();

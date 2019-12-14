@@ -17,17 +17,23 @@
 		<div class="input-group">
 	{{--		the old function takes the value entered into the field and brings it back if the form doesn't pass validation--}}
 			<div class="form-group">
-				<label> Title: <input type="text" name="title" value="{{ old('title') }}"></label>
+				<label> Title:
+					<input type="text" name="title" value="{{ old('title') }}">
+				</label>
 				<div> {{$errors->first('title')}} </div>
 			</div>
 
 			<div class="form-group">
-				<label> Name: <input type="text" name="title" value="{{ old('name') }}"></label>
+				<label> Name:
+					<input type="text" name="name" value="{{ old('name') }}">
+				</label>
 				<div> {{$errors->first('name')}} </div>
 			</div>
 
 			<div class="form-group">
-				<label> Email: <input type="text" name="title" value="{{ old('email') }}"></label>
+				<label> Email:
+					<input type="text" name="email" value="{{ old('email') }}">
+				</label>
 				<div> {{$errors->first('email')}} </div>
 			</div>
 
@@ -47,9 +53,32 @@
 
 		@csrf
 	</form>
+
+	<hr>
 	{{--this is a blade method of looping using the foreach function --}}
-	@foreach ($customers as $value)
-		<li> {{$value->title}} {{ $value->name }} ({{$value->email}}) </li>
-	@endforeach
+
+	<div class="row">
+		<div class="col-6">
+			<h3>Active Customers</h3>
+			<ul>
+				@foreach ($activeCustomers as $value)
+					<li>
+						{{$value->title}} {{ $value->name }} ({{$value->email}})
+					</li>
+				@endforeach
+			</ul>
+		</div>
+
+		<div class="col-6">
+			<h3>Inactive Customers</h3>
+			<ul>
+				@foreach ($inactiveCustomers as $value)
+					<li>
+						{{$value->title}} {{ $value->name }} ({{$value->email}})
+					</li>
+				@endforeach
+			</ul>
+		</div>
+	</div>
 
 @endsection
