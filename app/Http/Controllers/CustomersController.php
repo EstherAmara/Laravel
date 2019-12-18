@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class CustomersController extends Controller
 {
     //this displays all customers in the Customer table.
+    private function validateRequest() {
+        return request()->validate([
+            'name' => 'required|min:4',
+            'email' => 'required|email:rfc',
+            'title' => 'required',
+            'active' => 'required',
+            'company_id' => 'required'
+        ]);
+    }
+
     public function index() {
 //        $activeCustomers = Customer::active($num=1)->get();
 //        $inactiveCustomers = Customer::active($num = 2)->get();
@@ -29,24 +39,18 @@ class CustomersController extends Controller
 
     public function create() {
         $companies = Company::all();
+        $customer = new Customer();
 
-        return view ('customers.create', compact('companies'));
+        return view ('customers.create', compact('companies', 'customer'));
     }
 
 
     public function store() {
         //this gets whatever the user enters and stores it in the Customer table
 
-        $data = request()->validate([
-            'name' => 'required|min:4',
-            'email' => 'required|email:rfc',
-            'title' => 'required',
-            'active' => 'required',
-            'company_id' => 'required'
-        ]);
 
 
-        Customer::create($data);
+        Customer::create($this->validateRequest());
 //        if($data) {
 //            $customer = new Customer();
 //            $customer->name = request('name');
@@ -84,8 +88,26 @@ class CustomersController extends Controller
         ));
     }
 
-    public function update() {
+    public function update(Customer $customer) {
+        //this gets whatever the user enters and stores it in the Customer table
 
+//        $data = request()->validate([
+//            'title' => 'required',
+//            'name' => 'required|min:5',
+//            'email' => 'required|email',
+//            'active' => 'required',
+//            'company_id' => 'required'
+//        ]);
+
+        $customer->update($this->validateRequest());
+
+        return redirect('customers/'.$customer->id);
+    }
+
+    public function destroy(Customer $customer) {
+
+        $customer->delete();
+        return redirect('customers');
     }
 
 }

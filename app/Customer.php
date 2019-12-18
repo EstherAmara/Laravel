@@ -12,11 +12,11 @@ class Customer extends Model
     //guarded example. this shows the columns that should not be mass filled. kinda the opposite of fillable
     protected $guarded = [];
 
+    protected $attributes = [
+        'active' => 1
+    ];
     public function getActiveAttribute($attributes){
-        return [
-            1 => 'Active',
-            2 => 'Inactive'
-        ][$attributes];
+        return $this->activeOptions()[$attributes];
     }
 
     // same thing as the query in the controller
@@ -26,5 +26,12 @@ class Customer extends Model
 
     public function company() {
         return $this->belongsTo(Company::class);
+    }
+
+    public function activeOptions() {
+        return [
+            1 => 'Active',
+            2 => 'Inactive',
+        ];
     }
 }

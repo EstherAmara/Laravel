@@ -19,10 +19,14 @@
 </div>
 
 <div class="form-group">
-    <select name="active" id="active" class="form-control">
-        <option value="" disabled> Select customer status </option>
-        <option value="1"> Active </option>
-        <option value="2"> Inactive </option>
+    <label for="status"> Status: </label>
+    <select name="active" id="status" class="form-control">
+        @foreach ($customer->activeOptions() as $key => $value)
+            <option value="{{$key}}" {{$customer->active==$value?'selected':''}} > {{$value}}</option>
+        @endforeach
+{{--        <option value="" disabled> Select customer status </option>--}}
+{{--        <option value="1" {{$customer->active=='Active'?'selected':''}}> Active </option>--}}
+{{--        <option value="2" {{$customer->active=='Inactive'?'selected':''}}> Inactive </option>--}}
     </select>
 </div>
 
@@ -30,7 +34,7 @@
     <label for="company_id"> Company </label>
     <select name="company_id" id="company_id" class="form-control">
         @foreach ($companies as $value)
-            <option value = "{{$value->id}}"> {{$value->name}}</option>
+            <option value = "{{$value->id}}" {{$value->id==$customer->company_id?'selected':''}}> {{$value->name}}</option>
         @endforeach
     </select>
 </div>

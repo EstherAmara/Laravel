@@ -7,6 +7,12 @@
         <div class="col-12">
             <h1> Details for {{$customer->name}} </h1>
             <p> <a href="/customers/{{$customer->id}}/edit"> Edit </a> </p>
+
+            <form action="/customers/{{$customer->id}}" method="post">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger"> Delete </button>
+            </form>
         </div>
     </div>
 
@@ -17,7 +23,6 @@
             <p><strong>Company's Name:</strong> {{$customer->company->name}}</p>
             <p><strong>Company's Phone:</strong> {{$customer->company->phone}}</p>
             <p><strong>Status:</strong> {{$customer->active}}</p>
-
         </div>
     </div>
 @endsection
