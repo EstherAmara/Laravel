@@ -76,4 +76,16 @@ class CustomersController extends Controller
         return view('customers.show', compact('customer'));
     }
 
+    public function edit(Customer $customer) {
+        $companies = Company::all();
+        return view('customers.edit', compact(
+            'customer',
+            'companies'
+        ));
+    }
+
+    public function update() {
+
+    }
+
 }

@@ -40,5 +40,7 @@ Route::post('customers', 'CustomersController@store');
 Route::get('companies', 'CompaniesController@list');
 Route::post('companies', 'CompaniesController@store');
 Route::get('customers/{customer}', 'CustomersController@show');
+Route::get('customers/{customer}/edit', 'CustomersController@edit');
+Route::patch('customers/{customer}', 'CustomersController@patch');
 
 
