@@ -33,10 +33,12 @@ Route::view('aboutus', 'about');
 // you use get to get the required information from list and display them in the customers view page
 // this is also what displays all customers in the customer table
 Route::get('customers', 'CustomersController@index');
+Route::get('customers/create', 'CustomersController@create');
 
 //we are posting the values gotten from customer view page into the Customers table via the store method
 Route::post('customers', 'CustomersController@store');
 Route::get('companies', 'CompaniesController@list');
 Route::post('companies', 'CompaniesController@store');
+Route::get('customers/{customer}', 'CustomersController@show');
 
 

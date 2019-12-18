@@ -10,11 +10,10 @@ class CustomersController extends Controller
 {
     //this displays all customers in the Customer table.
     public function index() {
-        $activeCustomers = Customer::active($num=1)->get();
-        $inactiveCustomers = Customer::active($num = 2)->get();
-        $companies = Company::all();
+//        $activeCustomers = Customer::active($num=1)->get();
+//        $inactiveCustomers = Customer::active($num = 2)->get();
 
-//        $customers = Customer::all(); Used to get all records
+        $customers = Customer::all(); //Used to get all records
 //        dd($customers); this works just like var_dump
 
 //        return view('internals.customers', [
@@ -24,15 +23,16 @@ class CustomersController extends Controller
 
 //        this is the shorter version of the above function
         return view('customers.index', compact(
-            'activeCustomers',
-            'inactiveCustomers',
-            'companies'
+            'customers'
         ));
     }
 
     public function create() {
-        return view ('customers.create');
+        $companies = Company::all();
+
+        return view ('customers.create', compact('companies'));
     }
+
 
     public function store() {
         //this gets whatever the user enters and stores it in the Customer table
@@ -57,6 +57,23 @@ class CustomersController extends Controller
 //        }
 
         //go back to the page you're coming from i.e index.blade.php
-        return back();
+//        return back();
+
+        //redirects you to the page specified
+        return redirect('customers');
     }
+
+    //one way of doing this
+//    public function show($customer) {
+////        $customer = Customer::find($customer); This finds the Customer record
+//        $customer = Customer::where('id', $customer)->firstOrFail(); //finds the customer record and if the record doesn't exist, it throws a 404 error
+//
+//        return view('customers.show', compact('customer'));
+//    }
+
+    public function show(Customer $customer){
+        //automatically searches Customer for a record that matches $customer. If record is nonexistent, shows 404 page
+        return view('customers.show', compact('customer'));
+    }
+
 }

@@ -12,8 +12,15 @@ class Customer extends Model
     //guarded example. this shows the columns that should not be mass filled. kinda the opposite of fillable
     protected $guarded = [];
 
+    public function getActiveAttribute($attributes){
+        return [
+            1 => 'Active',
+            2 => 'Inactive'
+        ][$attributes];
+    }
+
     // same thing as the query in the controller
-    public  function scopeActive($query, $num) {
+    public function scopeActive($query, $num) {
         return $query->where('active', $num);
     }
 
