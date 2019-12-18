@@ -16,4 +16,8 @@ class Customer extends Model
     public  function scopeActive($query, $num) {
         return $query->where('active', $num);
     }
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
 }

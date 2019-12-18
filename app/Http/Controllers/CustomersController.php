@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
+use App\Customer,
+    App\Company;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
     //this displays all customers in the Customer table.
-    public function list() {
+    public function index() {
         $activeCustomers = Customer::active($num=1)->get();
         $inactiveCustomers = Customer::active($num = 2)->get();
+        $companies = Company::all();
 
 //        $customers = Customer::all(); Used to get all records
 //        dd($customers); this works just like var_dump
@@ -21,7 +23,15 @@ class CustomersController extends Controller
 //        ]);
 
 //        this is the shorter version of the above function
-        return view('internals.customers', compact('activeCustomers', 'inactiveCustomers'));
+        return view('customers.index', compact(
+            'activeCustomers',
+            'inactiveCustomers',
+            'companies'
+        ));
+    }
+
+    public function create() {
+        return view ('customers.create');
     }
 
     public function store() {
@@ -32,7 +42,9 @@ class CustomersController extends Controller
             'email' => 'required|email:rfc',
             'title' => 'required',
             'active' => 'required',
+            'company_id' => 'required'
         ]);
+
 
         Customer::create($data);
 //        if($data) {
@@ -44,7 +56,7 @@ class CustomersController extends Controller
 //            $customer->save();
 //        }
 
-        //go back to the page you're coming from i.e customers.blade.php
+        //go back to the page you're coming from i.e index.blade.php
         return back();
     }
 }

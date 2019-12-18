@@ -44,6 +44,15 @@
 					<option value="2"> Inactive </option>
 				</select>
 			</div>
+
+			<div class="form-group">
+				<label for="company_id"> Company </label>
+				<select name="company_id" id="company_id" class="form-control">
+					@foreach ($companies as $value)
+						<option value = "{{$value->id}}"> {{$value->name}}</option>
+					@endforeach
+				</select>
+			</div>
 			
 
 
@@ -63,7 +72,7 @@
 			<ul>
 				@foreach ($activeCustomers as $value)
 					<li>
-						{{$value->title}} {{ $value->name }} ({{$value->email}})
+						{{$value->title}} {{ $value->name }} ({{$value->company->name}})
 					</li>
 				@endforeach
 			</ul>
