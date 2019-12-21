@@ -11,7 +11,6 @@
                 @method('PATCH')
                 @include('customers/form')
                 <button type="submit" class="btn btn-success"> Update Details  </button>
-                @csrf
             </form>
         </div>
     </div>

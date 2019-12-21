@@ -26,7 +26,11 @@
 //These is a simplified one.
 Route::view('/', 'home');
 
+//everything here concerns contact form
 Route::get('contact', 'ContactFormController@create');
+Route::post('contact', 'ContactFormController@store');
+
+
 Route::view('aboutus', 'about');
 
 
@@ -40,6 +44,7 @@ Route::view('aboutus', 'about');
     Route::post('companies', 'CompaniesController@store');
 
     //following the resource method following laravel syntax
+    //everything here concerns the customers
     Route::get('customers', 'CustomersController@index');
     Route::get('customers/create', 'CustomersController@create');
     //we are posting the values gotten from customer view page into the Customers table via the store method
