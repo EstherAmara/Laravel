@@ -21,6 +21,14 @@ class ContactFormController extends Controller
         ]);
 
 //        dd(request()->all());
+        if($data) {
+            //this works with the bootstrap in layout
+            return redirect('contact')->with('message', 'Thanks for your message, we\'ll be in touch');
+
+            //this also works
+//            session()->flash('message', 'Thanks for your message, we\'ll be in touch. Ha ha');
+//            return redirect('contact');
+        }
 
         Mail::to('test@test.com')->send(new ContactFormMail());
 
