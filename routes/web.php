@@ -25,8 +25,10 @@
 
 //These is a simplified one.
 Route::view('/', 'home');
-Route::view('contactus', 'contact');
+
+Route::get('contact', 'ContactFormController@create');
 Route::view('aboutus', 'about');
+
 
 
 //this is when the return statement is in the controller,
