@@ -31,7 +31,7 @@ Route::get('contact', 'ContactFormController@create');
 Route::post('contact', 'ContactFormController@store');
 
 
-Route::view('aboutus', 'about');
+Route::view('aboutus', 'about')->middleware('test');
 
 
 
