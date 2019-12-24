@@ -4,7 +4,7 @@
 @section('content')
     <h1> Contact Us</h1>
 
-    <form action="/contact" method="post">
+    <form action="{{route('contact.store')}}" method="post">
 
         <div class="form-group">
             <label for="name"> Name: </label>

@@ -27,8 +27,10 @@
 Route::view('/', 'home');
 
 //everything here concerns contact form
-Route::get('contact', 'ContactFormController@create');
-Route::post('contact', 'ContactFormController@store');
+//we use the ->name option to give a route a name
+//this way, even if the name of the file gets changed (the first argument given in the route), the url doesn't break
+Route::get('contact', 'ContactFormController@create')->name('contact.create');
+Route::post('contact', 'ContactFormController@store')->name('contact.store');
 
 
 Route::view('aboutus', 'about')->middleware('test');
