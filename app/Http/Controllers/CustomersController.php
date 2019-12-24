@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 class CustomersController extends Controller
 {
     //this displays all customers in the Customer table.
+    public function __construct() {
+        //you can add ->only or ->except to restrict stuff
+        $this->middleware('auth');
+    }
+
     private function validateRequest() {
         return request()->validate([
             'name' => 'required|min:4',

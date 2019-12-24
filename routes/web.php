@@ -56,6 +56,20 @@ Route::view('aboutus', 'about');
 */
 
 //since these routes all followed Laravel Resource syntax, we can just use one line for everything
+//we don't want the customers to go through customers unless the user is logged in, we can add a ->middleware('auth') to the end of the file
+//or we can go to the controller and restrict it there
 Route::resource('customers', 'CustomersController');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

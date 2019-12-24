@@ -1,5 +1,5 @@
 {{-- gets the layout from layout.blade.php  --}}
-@extends('layout')
+@extends('layouts.app')
 
 
 {{--this is the long way of using the @section command--}}
