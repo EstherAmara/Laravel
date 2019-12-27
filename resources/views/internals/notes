@@ -7,3 +7,7 @@ migration
 yield
     this is used to partition views so that different sections of a view can be stored in different files
     go through layout for more details
+to store your javascript files
+    go to app.blade.php, under the scripts tags, add yours
+to store your css files
+    go to app.blade.php, under the styles tags, add yours
