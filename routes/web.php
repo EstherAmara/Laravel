@@ -33,7 +33,7 @@ Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact', 'ContactFormController@store')->name('contact.store');
 
 
-Route::view('aboutus', 'about')->middleware('test');
+Route::view('aboutus', 'about');
 
 
 
